@@ -5,6 +5,7 @@
     "main": "index.ts",
     "scripts": {
         "dev": "ts-node -r dotenv/config src/index.ts",
+        "tsc": "tsc --noEmit",
         "test": "jest",
         "test:watch": "jest --watch"
     },
@@ -15,5 +16,8 @@
         "dotenv": "^16.0.3",
         "ts-jest": "^29.1.0",
         "ts-node": "^10.9.1"
+    },
+    "dependencies": {
+        "mongodb": "^5.5.0"
     }
 }

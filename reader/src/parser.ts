@@ -1,3 +1,4 @@
+import { exhaustive } from "./exhaustive";
 import { logError } from "./logger";
 
 export enum Operation {
@@ -11,46 +12,52 @@ export enum MessageType {
     Outcome = "outcome",
 }
 
+export type EventMessage = {
+    msgId: number,
+    operation: Operation,
+    type: MessageType.Event,
+    timestamp: number,
+
+    eventId: string,
+    category: string,
+    subCategory: string,
+    name: string,
+    startTime: number,
+    displayed: boolean,
+    suspended: boolean,
+};
+
+export type MarketMessage = {
+    msgId: number,
+    operation: Operation,
+    type: MessageType.Market,
+    timestamp: number,
+
+    eventId: string,
+    marketId: string,
+    name: string,
+    displayed: boolean,
+    suspended: boolean,
+};
+
+export type OutcomeMessage = {
+    msgId: number,
+    operation: Operation,
+    type: MessageType.Outcome,
+    timestamp: number,
+
+    marketId: string,
+    outcomeId: string,
+    name: string,
+    price: string,
+    displayed: boolean,
+    suspended: boolean,
+};
+
 export type Message =
-    | {
-        msgId: number,
-        operation: Operation,
-        type: MessageType.Event,
-        timestamp: number,
-
-        eventId: string,
-        category: string,
-        subCategory: string,
-        name: string,
-        startTime: number,
-        displayed: boolean,
-        suspended: boolean,
-    }
-    | {
-        msgId: number,
-        operation: Operation,
-        type: MessageType.Market,
-        timestamp: number,
-
-        eventId: string,
-        marketId: string,
-        name: string,
-        displayed: boolean,
-        suspended: boolean,
-    }
-    | {
-        msgId: number,
-        operation: Operation,
-        type: MessageType.Outcome,
-        timestamp: number,
-
-        marketId: string,
-        outcomeId: string,
-        name: string,
-        price: string,
-        displayed: boolean,
-        suspended: boolean,
-    };
+    | EventMessage
+    | MarketMessage
+    | OutcomeMessage;
 
 type Part = string;
 
@@ -109,9 +116,9 @@ function parseMessage(input: Part[]): Message | undefined {
                 const value = input[i];
 
                 if (BOOLEAN_COLUMNS.includes(key)) {
-                    result[key] = Boolean(Number.parseInt(value, 10));
+                    result[key] = Boolean(parseInt(value, 10));
                 } else if (NUMBER_COLUMNS.includes(key)) {
-                    result[key] = Number.parseInt(value, 10);
+                    result[key] = parseInt(value, 10);
                 } else {
                     result[key] = value;
                 }
