@@ -49,3 +49,6 @@ test/integration
 
 # Excel temp files
 app/mappings/~*
+
+# Environment Variables
+# .env  See notes in .env file

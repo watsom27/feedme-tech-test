@@ -1,0 +1,19 @@
+{
+    "name": "reader",
+    "version": "1.0.0",
+    "description": "TCP Packer Reader",
+    "main": "index.ts",
+    "scripts": {
+        "dev": "ts-node -r dotenv/config src/index.ts",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.1.3",
+        "dotenv": "^16.0.3",
+        "ts-jest": "^29.1.0",
+        "ts-node": "^10.9.1"
+    }
+}
