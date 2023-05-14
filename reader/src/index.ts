@@ -1,30 +1,30 @@
-import { MongoClient } from "mongodb";
 import { Socket } from "net";
 
+import { logError, logInfo, logWarn } from "../../library/src/logger";
 import * as env from "./env";
-import { logInfo } from "./logger";
-import { MongoService } from "./mongoService";
 import { parseMessages } from "./parser";
+import { RabbitPublisherClient } from "./rabbit";
 
 async function main() {
+    logInfo("Connecting to socket", true);
     const socket = new Socket().connect({
         host: env.PROVIDER_HOSTNAME,
         port: env.PROVIDER_PORT,
     });
 
-    const mongoClient = new MongoClient(env.NOSQL_CONNECTION_STRING);
-    await mongoClient.connect();
-
-    const mongoService = new MongoService(mongoClient, env.NOSQL_DB_NAME);
-
     socket.setEncoding("utf8");
+
+    logInfo("Connecting to RabbitMQ", true);
+    const rabbitClient = await RabbitPublisherClient.new(env.RABBITMQ_URL, env.JSON_MESSAGE_QUEUE);
+
+    logInfo("Listening for packets...", true);
 
     socket.addListener("data", async (d) => {
         const messages = parseMessages(d.toString());
 
         for (const message of messages) {
             logInfo(message);
-            await mongoService.handleMessage(message);
+            rabbitClient.publishMessage(message);
         }
     });
 }

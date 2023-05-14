@@ -1,22 +1,32 @@
 version: '2'
 services:
   mongo:
-   image: mongo
-   ports:
-     - "27017:27017"
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
 
-  #rabbitmq:
-  #    image: rabbitmq:3-management
-  #    ports:
-  #      - "15672:15672"
-  #      - "5672:5672"
-  #    environment:
-  #      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-  #      RABBITMQ_DEFAULT_USER: "rabbitmq"
-  #      RABBITMQ_DEFAULT_VHOST: "/feedme"
+  mongo_ui:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "feedme"
 
   provider:
       image: sbgfeedme/provider:latest
       ports:
         - "8181:8181"
         - "8282:8282"
+
+volumes:
+  mongodb-data:

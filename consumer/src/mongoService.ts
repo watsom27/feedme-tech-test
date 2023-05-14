@@ -1,7 +1,7 @@
 import { Collection, MongoClient } from "mongodb";
 
+import { EventMessage, MarketMessage, Message, MessageType, Operation, OutcomeMessage } from "../../library/src";
 import { exhaustive } from "./exhaustive";
-import { EventMessage, MarketMessage, Message, MessageType, Operation, OutcomeMessage } from "./parser";
 
 const FIXTURES_COLLECTION = "Fixtures";
 

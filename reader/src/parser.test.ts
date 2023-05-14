@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
+import { Message, MessageType, Operation } from "../../library/src";
 
-import { Message, MessageType, Operation, parseMessages } from "./parser";
+import { parseMessages } from "./parser";
 
 const randomInputs: string[] = [
     "|4903|create|outcome|1683988990689|f7b72a5a-9db2-4723-843f-0d93652d72ae|883e26ec-b0d6-4569-8cc8-e269ddaf1f41|\\|Rochdale\\| 3-0|11/2|0|1|",

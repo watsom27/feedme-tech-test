@@ -1,0 +1,19 @@
+{
+    "name": "library",
+    "version": "1.0.0",
+    "description": "Shared types and common services.",
+    "main": "index.ts",
+    "scripts": {
+        "tsc": "tsc --noEmit"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.1.4",
+        "@types/terminal-kit": "^2.5.1",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "terminal-kit": "^3.0.0"
+    }
+}
