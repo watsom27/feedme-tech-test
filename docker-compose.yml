@@ -1,6 +1,6 @@
 version: '3'
 services:
-    mongodb:
+    mongo:
         image: mongo
         ports:
             - "27017:27017"
@@ -9,13 +9,15 @@ services:
         networks:
             - feedme-net
 
-    # mongo_ui:
-    #     image: mongo-express
-    #     ports:
-    #         - "8081:8081"
-    #     depends_on:
-    #         rabbitmq:
-    #             condition: service_healthy
+    mongo_ui:
+        image: mongo-express
+        ports:
+            - "8081:8081"
+        networks:
+            - feedme-net
+        depends_on:
+            rabbitmq:
+                condition: service_healthy
 
     rabbitmq:
         image: rabbitmq:3-management

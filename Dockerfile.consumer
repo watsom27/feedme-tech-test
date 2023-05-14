@@ -8,7 +8,7 @@ RUN npm ci
 
 ENV LOG_LEVEL=warn
 
-ENV NOSQL_CONNECTION_STRING=mongodb://mongodb:27017
+ENV NOSQL_CONNECTION_STRING=mongodb://mongo:27017
 ENV NOSQL_DB_NAME=FeedMe
 
 ENV RABBITMQ_URL=amqp://rabbitmq:rabbitmq@rabbitmq/feedme

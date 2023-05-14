@@ -1,0 +1,14 @@
+html {
+	--colour-active-green: #8efe89;
+	--colour-disabled-red: #ff5b5b;
+	--colour-disabled-button: gainsboro;
+	--colour-border: #b3bfd3;
+}
+
+body {
+	min-width: 368px;
+	margin: 0;
+	background: #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+}

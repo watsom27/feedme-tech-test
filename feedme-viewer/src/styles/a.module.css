@@ -1,0 +1,8 @@
+.white {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+.white:hover {
+	text-decoration: underline;
+}

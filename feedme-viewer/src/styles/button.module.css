@@ -1,0 +1,40 @@
+.button {
+	-webkit-appearance: none;
+	background-color: #fff;
+	color: #333;
+	padding: .5rem;
+	border: 2px solid #333;
+	cursor: pointer;
+	min-width: 5rem;
+}
+
+.button.disabled {
+	cursor: initial;
+	background: var(--colour-disabled-button);
+}
+
+.button.danger {
+	background: #ff5b5b;
+}
+
+a.button-like {
+	-webkit-appearance: none;
+	background-color: #fff;
+	color: #333;
+	padding: .5rem;
+	border: 2px solid #333;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: small;
+	box-sizing: border-box;
+}
+
+a.button-like.disabled {
+	cursor: default;
+}
+
+.button:hover:not(.disabled),
+a.button-like:hover:not(.disabled),
+.button-hover:hover {
+	background-color: rgb(255, 143, 143);
+}

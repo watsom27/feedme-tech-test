@@ -1,0 +1,80 @@
+.main {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.upper {
+	min-height: calc(100vh - 9rem);
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	background: #333333;
+	color: whitesmoke;
+}
+
+.contentWrapper {
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.sideMenu {
+	width: 18rem;
+	min-height: calc(100vh - 3.5rem);
+}
+
+.leftMenu {
+	padding-top: 0.5rem;
+	background: #050531;
+	color: whitesmoke;
+	border-right: 2px solid var(--colour-border);
+}
+
+.categoryList {
+	padding: 0;
+}
+
+.category {
+	padding: 0.5rem 2rem;
+	text-align: left;
+	display: block;
+}
+
+.categoryLink {
+	text-decoration: none;
+	color: #d0d0db;
+}
+
+.content {
+	width: 80%;
+}
+
+.rightMenu {
+	background: #eff4fb;
+	border-left: 2px solid var(--colour-border);
+}
+
+.betSlipTitle {
+	background: #142c6c;
+	color: whitesmoke;
+	display: block;
+	padding: 1rem;
+}
+
+.betCount {
+	padding: 0.25rem 0.5rem;
+	background: #090951;
+	border-radius: 100%;
+	display: inline;
+	margin-right: 0.5rem;
+}
+
+.myBetSlip {
+	display: inline;
+}

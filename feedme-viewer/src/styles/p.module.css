@@ -1,0 +1,16 @@
+.error {
+	color: red;
+}
+
+.info {
+	color: blue;
+}
+
+.noPad {
+	margin: 0;
+	padding: 0;
+}
+
+.noMargin {
+	margin: 0;
+}

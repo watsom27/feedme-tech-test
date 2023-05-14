@@ -3,9 +3,9 @@ import { Collection, MongoClient } from "mongodb";
 import { EventMessage, MarketMessage, Message, MessageType, Operation, OutcomeMessage } from "../../library/src";
 import { exhaustive } from "./exhaustive";
 
-const FIXTURES_COLLECTION = "Fixtures";
+export const FIXTURES_COLLECTION = "Fixtures";
 
-interface EventDocument {
+export interface EventDocument {
     eventId: string;
     category: string;
     subCategory: string;
@@ -17,7 +17,7 @@ interface EventDocument {
     outcomes: OutcomeDocument[];
 }
 
-interface MarketDocument {
+export interface MarketDocument {
     eventId: string;
     marketId: string;
     name: string;
@@ -25,7 +25,7 @@ interface MarketDocument {
     suspended: boolean;
 }
 
-interface OutcomeDocument {
+export interface OutcomeDocument {
     marketId: string;
     outcomeId: string;
     name: string;
