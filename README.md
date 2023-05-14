@@ -1,5 +1,20 @@
 # FeedMe Tech Test
 
+## Running The Stack
+
+All elements of this tech test can be spun up inside docker containers. 
+
+I have provided a Dockerfile for each service, a shell script to simplify building the images (`build_docker_images.sh`), and have updated the `docker-compose.yml` to include these services.
+
+To build and run the stack in docker:
+
+```bash
+./build_docker_images.sh
+docker compose up
+```
+
+Note: the `reader` and `consumer` containers are configured to wait for `rabbitmq` to pass healthchecks before starting. 
+
 ## Components
 
 ### `reader`
@@ -35,3 +50,7 @@ I also tried installing `libary` as a `file: ` dependency in `reader` and `consu
 I have used ts-node and TypeScript for development. Jest has been used for unit testing.
 
 RabbitMQ has been used for message queueing.
+
+### Dockerfiles
+
+The dockerfiles for `reader` and `consumer` both build from a `base` dockerfile that contains `ts-node` and the common `library` package.

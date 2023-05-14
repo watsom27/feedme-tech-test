@@ -1,0 +1,9 @@
+# ts-node base image, including the common `library` package
+
+FROM node:18
+
+WORKDIR /usr/feedme/
+
+RUN npm i -g ts-node
+
+COPY ./library ./library

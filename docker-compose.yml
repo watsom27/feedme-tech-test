@@ -1,32 +1,72 @@
-version: '2'
+version: '3'
 services:
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb-data:/data/db
+    mongodb:
+        image: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongodb-data:/data/db
+        networks:
+            - feedme-net
 
-  mongo_ui:
-    image: mongo-express
-    ports:
-      - "8081:8081"
+    # mongo_ui:
+    #     image: mongo-express
+    #     ports:
+    #         - "8081:8081"
+    #     depends_on:
+    #         rabbitmq:
+    #             condition: service_healthy
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    environment:
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_VHOST: "feedme"
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        environment:
+            RABBITMQ_DEFAULT_PASS: "rabbitmq"
+            RABBITMQ_DEFAULT_USER: "rabbitmq"
+            RABBITMQ_DEFAULT_VHOST: "feedme"
+        networks:
+            - feedme-net
+        healthcheck:
+            test: ["CMD", "rabbitmqctl", "node_health_check"]
+            interval: 20s
+            timeout: 10s
+            retries: 10
+            start_period: 10s
 
-  provider:
-      image: sbgfeedme/provider:latest
-      ports:
-        - "8181:8181"
-        - "8282:8282"
+    provider:
+        image: sbgfeedme/provider:latest
+        ports:
+            - "8181:8181"
+            - "8282:8282"
+        networks:
+            - feedme-net
+
+    reader:
+        image: feedme-tech-test:reader
+        depends_on: 
+            provider:
+                condition: service_started
+            rabbitmq:
+                condition: service_healthy
+        networks:
+            - feedme-net
+
+    consumer:
+        image: feedme-tech-test:consumer
+        depends_on:
+            mongo:
+                condition: service_started
+            rabbitmq:
+                condition: service_healthy
+        networks:
+            - feedme-net
+        deploy:
+            replicas: 2
 
 volumes:
-  mongodb-data:
+    mongodb-data:
+
+networks:
+    feedme-net:

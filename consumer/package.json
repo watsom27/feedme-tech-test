@@ -5,6 +5,7 @@
     "main": "index.ts",
     "scripts": {
         "dev": "ts-node -r dotenv/config src/index.ts",
+        "prod": "ts-node src/index.ts",
         "tsc": "tsc --noEmit",
         "tsc:watch": "tsc --noEmit --watch"
     },
