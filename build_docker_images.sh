@@ -9,3 +9,7 @@ docker build -t feedme-tech-test:consumer -f Dockerfile.consumer .
 
 echo Building feedme-tech-test:feedme-viewer
 docker build -t feedme-tech-test:feedme-viewer -f Dockerfile.feedme-viewer .
+
+echo
+echo
+echo "All images built. Run 'docker compose up' to start the stack."

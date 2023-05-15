@@ -53,9 +53,13 @@ Note: When first starting the stack, the MongoDB is empty, so the UI won't be ab
 
 ## Technology Choices
 
-I have used ts-node and TypeScript for development. Jest has been used for unit testing.
+I have used ts-node and TypeScript for development on `reader` and `consumer`, `feedme-viewer` uses Typescript and NextJS.
 
-RabbitMQ has been used for message queueing.
+Where unit testing has been done, Jest has been used.
+
+RabbitMQ has been used for message queueing. This was selected as I have more experience with RabbitMQ than Kafka.
+
+MongoDB was used as the NoSQL database, as suggested by the `docker-compose.yml` file.
 
 ### Dockerfiles
 
