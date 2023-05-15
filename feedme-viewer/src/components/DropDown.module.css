@@ -1,0 +1,27 @@
+.summary {
+	width: 98%;
+	margin: 0.5rem;
+	padding: 1rem;
+	border-radius: 5px;
+	display: inline-flex;
+	cursor: pointer;
+	background: #142c6c;
+	color: whitesmoke;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.details {
+	border: 2px solid var(--colour-border);
+	width: 98%;
+	margin: 0.5rem;
+	margin-top: 0;
+}
+
+.item {
+	border-bottom: 1px solid black;
+	width: 100%;
+	padding: 1rem 0;
+	display: block;
+}

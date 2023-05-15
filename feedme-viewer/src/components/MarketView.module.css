@@ -1,0 +1,36 @@
+.dropDown {
+	padding: 0;
+}
+
+.outcomeWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.outcome {
+	font-style: normal;
+}
+
+.outcomeLeft {
+	padding: 1rem;
+}
+
+.outcomeRight {
+	width: 5rem;
+	padding: 1rem;
+	border-left: 2px solid black;
+	cursor: pointer;
+}
+
+.outcomeRight:hover {
+	background: #eff4fb;
+}
+
+.outcomeSuspended {
+	background: var(--colour-disabled-button);
+	cursor: initial;
+}
+
+.outcomeSuspended:hover {
+	background: var(--colour-disabled-button);
+}

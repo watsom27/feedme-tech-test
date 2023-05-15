@@ -37,6 +37,20 @@ The consumer is set up to only receive one message at a time. This, along with t
 
 Multiple consumers can be spun up as required.
 
+### `feedme-viewer`
+
+_Visible at [http://localhost](http://localhost) when the stack is running in docker._
+
+This application is a NextJS web application that reads from the MongoDB database populated by `reader` and `consumer` and presents this information in a user-friendly way.
+
+Any data with `displayed: false` is ignored and cannot be seen by the user. If an event, market, or outcome is marked as `suspended: true`, then the child outcomes are shown, but cannot be selected by the user.
+
+React has been used for the UI, and for styling I have used CSS Modules. The styling is based off the Sky Bet website.
+
+The next features I would implement is some form of client-side store for the users Bet Slip. This would then allow users to populate the bet slip using the buttons on the event's page. After this I would look into user login and account functionality, along with placing of bets.
+
+Note: When first starting the stack, the MongoDB is empty, so the UI won't be able to show much until it is populated with events/markets/outcomes that have `displayed` set to `true`.
+
 ## Technology Choices
 
 I have used ts-node and TypeScript for development. Jest has been used for unit testing.

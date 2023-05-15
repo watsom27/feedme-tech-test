@@ -1,0 +1,10 @@
+.title {
+	display: block;
+	width: 100%;
+	color: whitesmoke;
+	background-image: linear-gradient(to left, #112e78, #0e245f, #0D2051);
+	margin: 0;
+	padding: 3rem;
+	text-align: left;
+	margin-bottom: 1rem;
+}

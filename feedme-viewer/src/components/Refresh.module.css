@@ -1,0 +1,18 @@
+.wrapper {
+	display: flex;
+	padding: 0 0.5rem;
+}
+
+.button {
+	padding: 1rem 3rem;
+	background: #1e58c4;
+	border-radius: 4px;
+	color: whitesmoke;
+	border: none;
+	cursor: pointer;
+}
+
+.inProgress {
+	background: var(--colour-disabled-button);
+	cursor: default;
+}

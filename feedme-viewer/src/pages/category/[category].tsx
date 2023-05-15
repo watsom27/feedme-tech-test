@@ -1,18 +1,20 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import Link from "next/link";
+import { useState } from "react";
 
-import { NavItem, Wrapper } from "~/components/Wrapper";
+import { DropDown, DropDownItem } from "~/components/DropDown";
+import { FancyTitle } from "~/components/FancyTitle";
+import { Refresh } from "~/components/Refresh";
+import { Wrapper, WrapperProps } from "~/components/Wrapper";
 import { getLeftSideMenuItems } from "~/helper/leftSideMenuHelper";
 import { stripPipeEscapes } from "~/helper/stringHelper";
-import { EventName, mongoService, Subcategory } from "~/service/MongoService";
+import { EventView, mongoService, Subcategory } from "~/service/MongoService";
 
 import categoryStyles from "~/pages/category/Category.module.css";
-import p from "~/styles/p.module.css";
 
-interface CategoryProps {
-    events: Record<Subcategory, EventName[]>;
+interface CategoryProps extends WrapperProps {
+    events: Record<Subcategory, EventView[]>;
     category: string;
-    leftSideMenuItems: NavItem[];
 }
 
 export async function getServerSideProps(
@@ -37,25 +39,37 @@ export async function getServerSideProps(
 }
 
 export default function categoryPage({ events, category, leftSideMenuItems }: CategoryProps): JSX.Element {
+    const [eventsData, setEventsData] = useState(events);
+
+    const refresh = async () => {
+        const response = await fetch(`/api/v1/category/${category}`);
+
+        if (response.ok) {
+            setEventsData(await response.json());
+        } else {
+            console.error(await response.text());
+        }
+    };
+
     return (
         <Wrapper leftSideMenuItems={ leftSideMenuItems }>
-            <h2 className={ categoryStyles.title }>{ category }</h2>
-            { Object.entries(events).map(([subcategory, events]) => (
-                <details key={ subcategory }>
-                    <summary className={ categoryStyles.summary }>{ subcategory }</summary>
-                    <div className={ categoryStyles.details }>
-                        { events.map((name) => (
-                            <p key={ name } className={ p.noPad }>
+            <FancyTitle>{ category }</FancyTitle>
+            <Refresh onClick={ refresh } />
+            { Object.entries(eventsData).map(([subcategory, events]) => (
+                <DropDown key={ subcategory } summaryText={ subcategory }>
+                    { events
+                        .map(({ eventId, name }) => (
+                            <DropDownItem key={ eventId }>
                                 <Link
-                                    href={ `/event/${encodeURI(stripPipeEscapes(name))}` }
-                                    className={ categoryStyles.eventLink }
+                                    href={ `/event/${eventId}` }
+                                    className={ categoryStyles
+                                        .eventLink }
                                 >
                                     { stripPipeEscapes(name) }
                                 </Link>
-                            </p>
+                            </DropDownItem>
                         )) }
-                    </div>
-                </details>
+                </DropDown>
             )) }
         </Wrapper>
     );
