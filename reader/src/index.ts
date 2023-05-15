@@ -1,7 +1,7 @@
 import { Socket } from "net";
 
-import { logError, logInfo, logWarn } from "../../library/src/logger";
 import * as env from "./env";
+import { logError, logInfo, logWarn } from "./logger";
 import { parseMessages } from "./parser";
 import { RabbitPublisherClient } from "./rabbit";
 

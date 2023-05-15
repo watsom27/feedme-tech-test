@@ -1,7 +1,7 @@
 import amqp, { Channel, ConsumeMessage } from "amqplib";
 
 import { Message } from "../../library/src";
-import { logInfo, logWarn } from "../../library/src/logger";
+import { logInfo, logWarn } from "./logger";
 import { MongoService } from "./mongoService";
 
 export class RabbitConsumerClient {

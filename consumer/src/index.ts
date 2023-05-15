@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
-import { logInfo } from "../../library/src/logger";
 import * as env from "./env";
+import { logInfo } from "./logger";
 import { MongoService } from "./mongoService";
 import { RabbitConsumerClient } from "./rabbit";
 

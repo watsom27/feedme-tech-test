@@ -1,5 +1,5 @@
 import { Message, MessageType } from "../../library/src";
-import { logError } from "../../library/src/logger";
+import { logError } from "./logger";
 
 type Part = string;
 

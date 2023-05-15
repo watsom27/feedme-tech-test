@@ -1,7 +1,7 @@
 import amqp, { Channel } from "amqplib";
 
 import { Message } from "../../library/src";
-import { logInfo } from "../../library/src/logger";
+import { logInfo } from "./logger";
 
 export class RabbitPublisherClient {
     private constructor(private channel: Channel, private queueName: string) {}
