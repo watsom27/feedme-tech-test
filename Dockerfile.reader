@@ -6,12 +6,4 @@ WORKDIR reader
 
 RUN npm ci
 
-ENV LOG_LEVEL=warn
-
-ENV PROVIDER_HOSTNAME=provider
-ENV PROVIDER_PORT=8282
-
-ENV RABBITMQ_URL=amqp://rabbitmq:rabbitmq@rabbitmq/feedme
-ENV JSON_MESSAGE_QUEUE=FeedMeQueue
-
 CMD ["npm", "run", "prod"]

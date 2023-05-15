@@ -37,14 +37,6 @@ The consumer is set up to only receive one message at a time. This, along with t
 
 Multiple consumers can be spun up as required.
 
-### `library`
-
-`library` is a small package containing code that is shared between `reader` and `consumer`. 
-
-I had originally wanted to set this project up using `npm` workspaces, however I couldn't get it working with typescript and didn't want to commit too much time to it.
-
-I also tried installing `libary` as a `file: ` dependency in `reader` and `consumer`, but this broke the unit tests in `reader` so I went back on this.
-
 ## Technology Choices
 
 I have used ts-node and TypeScript for development. Jest has been used for unit testing.

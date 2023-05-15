@@ -47,6 +47,12 @@ services:
 
     reader:
         image: feedme-tech-test:reader
+        environment:
+            LOG_LEVEL: "warn"
+            PROVIDER_HOSTNAME: "provider"
+            PROVIDER_PORT: 8282
+            RABBITMQ_URL: "amqp://rabbitmq:rabbitmq@rabbitmq/feedme"
+            JSON_MESSAGE_QUEUE: "FeedMeQueue"
         depends_on: 
             provider:
                 condition: service_started
@@ -57,6 +63,12 @@ services:
 
     consumer:
         image: feedme-tech-test:consumer
+        environment:
+            LOG_LEVEL: "warn"
+            NOSQL_CONNECTION_STRING: "mongodb://mongo:27017"
+            NOSQL_DB_NAME: "FeedMe"
+            RABBITMQ_URL: "amqp://rabbitmq:rabbitmq@rabbitmq/feedme"
+            JSON_MESSAGE_QUEUE: "FeedMeQueue"
         depends_on:
             mongo:
                 condition: service_started
