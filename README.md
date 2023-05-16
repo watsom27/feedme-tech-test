@@ -1,6 +1,6 @@
 # FeedMe Tech Test
 
-## Running The Stack
+## Running The Stack In Docker
 
 All elements of this tech test can be spun up inside docker containers. 
 
@@ -13,7 +13,9 @@ To build and run the stack in docker:
 docker compose up
 ```
 
-Note: the `reader` and `consumer` containers are configured to wait for `rabbitmq` to pass healthchecks before starting. 
+Note:
+- The `reader` and `consumer` containers are configured to wait for `rabbitmq` to pass healthchecks before starting. 
+- Both `reader` and `consumer` have configurable log levels (`info`, `warn` and `error`). This is set to `warn` in `docker-compose.yml` but can be changed to `info` for more verbose logging on a per-message basis.
 
 ## Components
 
